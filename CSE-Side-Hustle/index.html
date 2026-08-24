@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CSE Side Hustle  Buy, Sell, Book & Earn Online</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#171B3D;
+    --ink-soft:#585C7E;
+    --paper:#FAF8F4;
+    --paper-2:#FFFFFF;
+    --brand:#2A2E8F;
+    --brand-2:#4347C4;
+    --accent:#F3641C;
+    --accent-soft:#FFE9DB;
+    --brand-soft:#ECEDFA;
+    --line:#E6E2D6;
+    --radius:18px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Inter',sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,.display{
+    font-family:'Sora',sans-serif;
+    letter-spacing:-0.01em;
+  }
+  .mono{font-family:'JetBrains Mono',monospace;}
+  a{color:inherit;text-decoration:none;}
+  img{max-width:100%;display:block;}
+  button{font-family:inherit;cursor:pointer;}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 28px;}
+  .eyebrow{
+    font-family:'JetBrains Mono',monospace;
+    font-size:12px;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--accent);
+    font-weight:500;
+  }
+  :focus-visible{outline:2px solid var(--brand-2);outline-offset:3px;}
+
+  /* ---------- Header ---------- */
+  .site-header{
+    position:sticky;top:0;z-index:50;
+    background:rgba(250,248,244,0.86);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .header-row{
+    display:flex;align-items:center;justify-content:space-between;
+    height:74px;
+  }
+  .logo{display:flex;align-items:center;gap:10px;}
+  .logo-word{line-height:1;}
+  .logo-word .cse{display:block;font-family:'Sora',sans-serif;font-weight:800;font-size:15px;color:var(--brand);letter-spacing:0.02em;}
+  .logo-word .hustle{display:block;font-family:'Sora',sans-serif;font-weight:800;font-size:15px;color:var(--accent);letter-spacing:0.06em;margin-top:1px;}
+  .nav-links{display:flex;align-items:center;gap:32px;}
+  .nav-links a{font-size:14.5px;font-weight:600;color:var(--ink);position:relative;padding:4px 0;}
+  .nav-links a:hover{color:var(--brand);}
+  .header-actions{display:flex;align-items:center;gap:14px;}
+  .lang-toggle{
+    display:flex;align-items:center;gap:6px;
+    border:1px solid var(--line);background:var(--paper-2);
+    padding:7px 12px;border-radius:999px;font-size:13px;font-weight:600;color:var(--ink-soft);
+  }
+  .lang-toggle:hover{border-color:var(--brand-2);color:var(--brand);}
+  .btn{
+    display:inline-flex;align-items:center;gap:8px;
+    padding:11px 20px;border-radius:999px;
+    font-size:14.5px;font-weight:700;border:none;
+    transition:transform .15s ease, box-shadow .15s ease;
+  }
+  .btn:hover{transform:translateY(-1px);}
+  .btn-primary{background:var(--brand);color:#fff;box-shadow:0 8px 20px -8px rgba(42,46,143,0.55);}
+  .btn-primary:hover{box-shadow:0 10px 24px -8px rgba(42,46,143,0.65);}
+  .btn-accent{background:var(--accent);color:#fff;box-shadow:0 8px 20px -8px rgba(243,100,28,0.55);}
+  .btn-ghost{background:transparent;color:var(--brand);border:1.5px solid var(--brand-soft);}
+  .btn-ghost:hover{border-color:var(--brand);}
+  .menu-btn{display:none;background:none;border:none;padding:6px;}
+
+  /* ---------- Hero ---------- */
+  .hero{
+    position:relative;overflow:hidden;
+    padding:76px 0 90px;
+    background:
+      radial-gradient(680px 420px at 82% -10%, var(--brand-soft) 0%, rgba(236,237,250,0) 70%),
+      radial-gradient(520px 340px at -5% 30%, var(--accent-soft) 0%, rgba(255,233,219,0) 70%);
+  }
+  .hero-grid{display:grid;grid-template-columns:1.05fr 0.95fr;gap:56px;align-items:center;}
+  .hero h1{font-size:50px;line-height:1.04;font-weight:800;margin:16px 0 20px;color:var(--ink);}
+  .hero h1 .accent{color:var(--accent);}
+  .hero p.lede{font-size:17.5px;line-height:1.6;color:var(--ink-soft);max-width:480px;margin:0 0 30px;}
+  .hero-ctas{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:34px;}
+  .trust-row{display:flex;gap:26px;flex-wrap:wrap;}
+  .trust-item{display:flex;align-items:center;gap:8px;font-size:13.5px;font-weight:600;color:var(--ink-soft);}
+  .trust-item svg{flex-shrink:0;color:var(--brand);}
+
+  /* ---------- Assistant panel ---------- */
+  .assistant-card{
+    background:var(--paper-2);
+    border:1px solid var(--line);
+    border-radius:24px;
+    box-shadow:0 30px 60px -30px rgba(23,27,61,0.35);
+    overflow:hidden;
+    display:flex;flex-direction:column;
+    height:560px;
+    position:relative;
+  }
+  .assistant-glow{
+    position:absolute;inset:-2px;border-radius:26px;
+    background:linear-gradient(135deg, var(--accent), var(--brand-2));
+    opacity:0.16;filter:blur(18px);z-index:-1;
+  }
+  .assistant-head{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:16px 18px;border-bottom:1px solid var(--line);
+    background:linear-gradient(135deg, var(--brand) 0%, var(--brand-2) 100%);
+    color:#fff;
+  }
+  .assistant-head-left{display:flex;align-items:center;gap:10px;}
+  .assistant-avatar{
+    width:34px;height:34px;border-radius:10px;
+    background:rgba(255,255,255,0.18);
+    display:flex;align-items:center;justify-content:center;
+  }
+  .assistant-name{font-family:'Sora',sans-serif;font-weight:700;font-size:14.5px;}
+  .assistant-status{font-size:11.5px;opacity:0.85;display:flex;align-items:center;gap:5px;}
+  .dot{width:6px;height:6px;border-radius:50%;background:#5CE697;display:inline-block;}
+  .speak-toggle{
+    display:flex;align-items:center;gap:6px;
+    background:rgba(255,255,255,0.14);border:1px solid rgba(255,255,255,0.3);
+    color:#fff;font-size:11.5px;font-weight:600;padding:6px 10px;border-radius:999px;
+  }
+  .speak-toggle.active{background:rgba(255,255,255,0.32);}
+
+  .chat-body{
+    flex:1;overflow-y:auto;padding:18px;display:flex;flex-direction:column;gap:12px;
+    background:
+      linear-gradient(180deg, #FCFBF8 0%, #FAF8F4 100%);
+  }
+  .msg{max-width:82%;padding:11px 14px;border-radius:16px;font-size:14px;line-height:1.5;}
+  .msg.bot{align-self:flex-start;background:var(--brand-soft);color:var(--ink);border-bottom-left-radius:5px;}
+  .msg.user{align-self:flex-end;background:var(--brand);color:#fff;border-bottom-right-radius:5px;}
+  .msg.error{align-self:flex-start;background:#FFEAEA;color:#9A1E1E;border-bottom-left-radius:5px;}
+  .typing{align-self:flex-start;display:flex;gap:4px;padding:12px 14px;background:var(--brand-soft);border-radius:16px;border-bottom-left-radius:5px;}
+  .typing span{width:6px;height:6px;background:var(--brand-2);border-radius:50%;opacity:0.5;animation:blink 1.2s infinite;}
+  .typing span:nth-child(2){animation-delay:.2s;}
+  .typing span:nth-child(3){animation-delay:.4s;}
+  @keyframes blink{0%,80%,100%{opacity:.3;transform:translateY(0);}40%{opacity:1;transform:translateY(-3px);}}
+
+  .chips-row{display:flex;gap:8px;padding:0 14px 12px;flex-wrap:wrap;}
+  .chip{
+    font-size:12px;font-weight:600;color:var(--brand);background:var(--brand-soft);
+    border:1px solid transparent;padding:7px 12px;border-radius:999px;white-space:nowrap;
+  }
+  .chip:hover{border-color:var(--brand-2);}
+
+  .chat-input-row{
+    display:flex;align-items:center;gap:8px;
+    padding:14px;border-top:1px solid var(--line);background:var(--paper-2);
+  }
+  .mic-btn{
+    width:40px;height:40px;flex-shrink:0;border-radius:50%;border:none;
+    background:var(--accent-soft);color:var(--accent);
+    display:flex;align-items:center;justify-content:center;
+    transition:all .15s ease;
+  }
+  .mic-btn.listening{background:var(--accent);color:#fff;animation:pulse-mic 1.4s infinite;}
+  @keyframes pulse-mic{0%{box-shadow:0 0 0 0 rgba(243,100,28,0.5);}70%{box-shadow:0 0 0 12px rgba(243,100,28,0);}100%{box-shadow:0 0 0 0 rgba(243,100,28,0);}}
+  .mic-btn:disabled{opacity:0.35;cursor:not-allowed;}
+  .chat-input{
+    flex:1;border:1px solid var(--line);border-radius:999px;padding:10px 16px;
+    font-size:14px;font-family:inherit;background:var(--paper);color:var(--ink);
+  }
+  .chat-input:focus{outline:none;border-color:var(--brand-2);}
+  .send-btn{
+    width:40px;height:40px;flex-shrink:0;border-radius:50%;border:none;
+    background:var(--brand);color:#fff;display:flex;align-items:center;justify-content:center;
+  }
+  .send-btn:disabled{opacity:0.4;}
+
+  /* ---------- Trust bar ---------- */
+  .trust-bar{background:var(--brand);padding:22px 0;}
+  .trust-bar .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:18px;}
+  .trust-bar-item{display:flex;align-items:center;gap:10px;color:#fff;}
+  .trust-bar-item svg{color:var(--accent);flex-shrink:0;}
+  .trust-bar-item span{font-size:13.5px;font-weight:600;}
+
+  /* ---------- Sections ---------- */
+  section{padding:88px 0;}
+  .section-head{max-width:600px;margin-bottom:48px;}
+  .section-head h2{font-size:34px;font-weight:800;margin:12px 0 12px;}
+  .section-head p{color:var(--ink-soft);font-size:16px;line-height:1.6;}
+
+  .cat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+  .cat-card{
+    background:var(--paper-2);border:1px solid var(--line);border-radius:var(--radius);
+    padding:26px;transition:transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+    display:flex;flex-direction:column;gap:14px;text-align:left;width:100%;
+  }
+  .cat-card:hover{transform:translateY(-4px);box-shadow:0 22px 40px -24px rgba(23,27,61,0.35);border-color:transparent;}
+  .cat-icon{
+    width:46px;height:46px;border-radius:13px;display:flex;align-items:center;justify-content:center;
+  }
+  .cat-icon.brand{background:var(--brand-soft);color:var(--brand);}
+  .cat-icon.accent{background:var(--accent-soft);color:var(--accent);}
+  .cat-card h3{font-size:17px;font-weight:700;margin:0;}
+  .cat-card p{font-size:13.5px;color:var(--ink-soft);line-height:1.55;margin:0;}
+  .cat-link{font-size:13px;font-weight:700;color:var(--brand);display:flex;align-items:center;gap:5px;margin-top:auto;}
+  .cat-card:hover .cat-link{color:var(--accent);}
+
+  /* ---------- How it works ---------- */
+  .how{background:var(--paper-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;}
+  .step{position:relative;padding-top:6px;}
+  .step-num{font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--accent);font-weight:600;}
+  .step h3{font-size:19px;font-weight:700;margin:10px 0 8px;}
+  .step p{font-size:14.5px;color:var(--ink-soft);line-height:1.6;margin:0;}
+  .step-line{position:absolute;top:12px;left:36px;right:-28px;height:1px;background:var(--line);}
+  .step:last-child .step-line{display:none;}
+
+  /* ---------- CTA banner ---------- */
+  .cta-banner{
+    background:linear-gradient(120deg, var(--accent) 0%, #FF8A4C 100%);
+    border-radius:28px;padding:56px 48px;
+    display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;
+    color:#fff;
+  }
+  .cta-banner h2{font-size:30px;font-weight:800;margin:0 0 8px;max-width:480px;}
+  .cta-banner p{margin:0;opacity:0.92;font-size:15px;max-width:420px;}
+  .cta-banner .btn-primary{background:#fff;color:var(--accent);box-shadow:none;}
+
+  /* ---------- Footer ---------- */
+  footer{background:var(--ink);color:#C9CAE0;padding:64px 0 28px;}
+  .footer-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:36px;margin-bottom:48px;}
+  .footer-brand .logo-word .cse{color:#fff;}
+  .footer-brand p{font-size:13.5px;line-height:1.6;color:#9799C0;margin:14px 0 0;max-width:280px;}
+  .footer-col h4{font-family:'Sora',sans-serif;font-size:13px;color:#fff;text-transform:uppercase;letter-spacing:0.08em;margin:0 0 16px;}
+  .footer-col a{display:block;font-size:14px;color:#B4B6D6;margin-bottom:11px;}
+  .footer-col a:hover{color:#fff;}
+  .footer-bottom{
+    border-top:1px solid rgba(255,255,255,0.1);padding-top:22px;
+    display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;
+    font-size:12.5px;color:#8385AD;
+  }
+
+  @media (max-width:920px){
+    .nav-links{display:none;}
+    .menu-btn{display:block;}
+    .hero-grid{grid-template-columns:1fr;}
+    .hero h1{font-size:38px;}
+    .assistant-card{height:500px;}
+    .cat-grid{grid-template-columns:repeat(2,1fr);}
+    .steps{grid-template-columns:1fr;}
+    .step-line{display:none;}
+    .footer-grid{grid-template-columns:1fr 1fr;}
+    .cta-banner{padding:40px 26px;}
+  }
+  @media (max-width:560px){
+    .cat-grid{grid-template-columns:1fr;}
+    .footer-grid{grid-template-columns:1fr;}
+    .trust-bar .wrap{justify-content:flex-start;}
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap header-row">
+    <a href="#top" class="logo" aria-label="CSE Side Hustle home">
+      <svg width="34" height="34" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M8 30V10L20 6L32 10V30" stroke="#2A2E8F" stroke-width="2.4" stroke-linejoin="round"/>
+        <path d="M8 15L32 15" stroke="#2A2E8F" stroke-width="2.4"/>
+        <path d="M6 6L14 12L10 8" stroke="#F3641C" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="27" cy="21" r="1.6" fill="#F3641C"/>
+        <circle cx="22" cy="24" r="1.6" fill="#F3641C"/>
+      </svg>
+      <span class="logo-word"><span class="cse">CSE</span><span class="hustle">SIDE HUSTLE</span></span>
+    </a>
+    <nav class="nav-links">
+      <a href="#top">Home</a>
+      <a href="#categories" data-i18n="nav_services">Services</a>
+      <a href="#how">About Us</a>
+      <a href="#categories" data-i18n="nav_shop">Shop</a>
+    </nav>
+    <div class="header-actions">
+      <button class="lang-toggle" id="langToggle" aria-label="Toggle language">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M12 21a9 9 0 100-18 9 9 0 000 18z" stroke="currentColor" stroke-width="1.8"/><path d="M3 12h18M12 3c2.4 2.7 3.6 6 3.6 9s-1.2 6.3-3.6 9c-2.4-2.7-3.6-6-3.6-9s1.2-6.3 3.6-9z" stroke="currentColor" stroke-width="1.8"/></svg>
+        <span id="langLabel">Français</span>
+      </button>
+      <a href="#assistant" class="btn btn-primary" data-i18n="nav_cta">Ask the Assistant</a>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="eyebrow" data-i18n="hero_eyebrow">Cameroon's digital marketplace</span>
+        <h1 data-i18n="hero_h1">Buy, sell, book services &amp; <span class="accent">earn online</span> — just by talking</h1>
+        <p class="lede" data-i18n="hero_lede">Products, professional services, medical care, online courses and affiliate income, all in one place. Tell the Hustle Assistant what you need and it'll point you to the right spot.</p>
+        <div class="hero-ctas">
+          <a href="#assistant" class="btn btn-accent" data-i18n="hero_cta1">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M12 15a3 3 0 003-3V6a3 3 0 00-6 0v6a3 3 0 003 3z" stroke="currentColor" stroke-width="1.8"/><path d="M19 11a7 7 0 01-14 0M12 18v3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+            Talk to the Assistant
+          </a>
+          <a href="#categories" class="btn btn-ghost" data-i18n="hero_cta2">Browse categories</a>
+        </div>
+        <div class="trust-row">
+          <div class="trust-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.8"/></svg><span data-i18n="trust1">Trusted platform</span></div>
+          <div class="trust-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M4 6h16M4 12h10M4 18h6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span data-i18n="trust2">Easy browsing</span></div>
+          <div class="trust-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M13 2L4 14h6l-1 8 9-12h-6l1-8z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg><span data-i18n="trust3">Fast discovery</span></div>
+        </div>
+      </div>
+
+      <div id="assistant" class="assistant-card">
+        <div class="assistant-glow"></div>
+        <div class="assistant-head">
+          <div class="assistant-head-left">
+            <div class="assistant-avatar">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 3l1.8 4.6L18 9l-4.2 1.4L12 15l-1.8-4.6L6 9l4.2-1.4L12 3z" fill="#fff"/><path d="M19 14l.8 2 2 .8-2 .8-.8 2-.8-2-2-.8 2-.8.8-2z" fill="#fff" opacity="0.85"/></svg>
+            </div>
+            <div>
+              <div class="assistant-name">Hustle Assistant</div>
+              <div class="assistant-status"><span class="dot"></span> <span data-i18n="assist_online">Online — ask anything</span></div>
+            </div>
+          </div>
+          <button class="speak-toggle" id="speakToggle" title="Read replies aloud">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M11 5L6 9H3v6h3l5 4V5z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M16 8.5a5 5 0 010 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+            <span data-i18n="voice_out">Voice</span>
+          </button>
+        </div>
+
+        <div class="chat-body" id="chatBody"></div>
+
+        <div class="chips-row" id="chipsRow"></div>
+
+        <div class="chat-input-row">
+          <button class="mic-btn" id="micBtn" title="Speak your question">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none"><path d="M12 15a3 3 0 003-3V6a3 3 0 00-6 0v6a3 3 0 003 3z" stroke="currentColor" stroke-width="2"/><path d="M19 11a7 7 0 01-14 0M12 18v3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          </button>
+          <input type="text" class="chat-input" id="chatInput" data-i18n-placeholder="chat_placeholder" placeholder="Ask about products, bookings, courses…" autocomplete="off">
+          <button class="send-btn" id="sendBtn" title="Send">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M4 20l16-8L4 4v6l10 2-10 2v6z" fill="#fff"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="trust-bar">
+    <div class="wrap">
+      <div class="trust-bar-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.8"/></svg><span data-i18n="tb1">Trusted platform</span></div>
+      <div class="trust-bar-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M4 6h16M4 12h10M4 18h6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span data-i18n="tb2">Easy browsing</span></div>
+      <div class="trust-bar-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M12 2l2.4 6.6L21 11l-6.6 2.4L12 20l-2.4-6.6L3 11l6.6-2.4L12 2z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg><span data-i18n="tb3">Handpicked deals</span></div>
+      <div class="trust-bar-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M13 2L4 14h6l-1 8 9-12h-6l1-8z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg><span data-i18n="tb4">Fast discovery</span></div>
+    </div>
+  </div>
+
+  <section id="categories">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow" data-i18n="cat_eyebrow">What you're searching for</span>
+        <h2 data-i18n="cat_h2">One marketplace, six ways to hustle</h2>
+        <p data-i18n="cat_p">Every category below is wired into the assistant — tap a card and it'll ask the AI for you.</p>
+      </div>
+      <div class="cat-grid" id="catGrid">
+        <button class="cat-card" data-prompt="What kinds of products can I buy on the Shop?">
+          <div class="cat-icon brand"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M6 8h12l-1 12H7L6 8z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M9 8V6a3 3 0 016 0v2" stroke="currentColor" stroke-width="1.8"/></svg></div>
+          <h3 data-i18n="cat_shop_h">Shop</h3>
+          <p data-i18n="cat_shop_p">Find top-quality products and deals from verified sellers across Cameroon.</p>
+          <span class="cat-link" data-i18n="cat_ask">Ask about this →</span>
+        </button>
+        <button class="cat-card" data-prompt="What medical care services can I book?">
+          <div class="cat-icon accent"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 21s-7-4.35-9.5-8.5C.5 8.5 3 5 6.5 5c1.9 0 3.3 1 4 2.2C11.2 6 12.6 5 14.5 5 18 5 20.5 8.5 18.5 12.5 16 16.65 12 21 12 21z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M8 12h2l1.2-2.4L12.8 14 14 12h2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <h3 data-i18n="cat_med_h">Medical Care</h3>
+          <p data-i18n="cat_med_p">Book consultations and care from vetted health professionals near you.</p>
+          <span class="cat-link" data-i18n="cat_ask">Ask about this →</span>
+        </button>
+        <button class="cat-card" data-prompt="How do I book a professional service like a salon or repair appointment?">
+          <div class="cat-icon brand"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><rect x="4" y="5" width="16" height="15" rx="2" stroke="currentColor" stroke-width="1.8"/><path d="M4 9h16M8 3v4M16 3v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M9 14l2 2 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <h3 data-i18n="cat_serv_h">Services</h3>
+          <p data-i18n="cat_serv_p">Book salons, repairs and other professional services in a few taps.</p>
+          <span class="cat-link" data-i18n="cat_ask">Ask about this →</span>
+        </button>
+        <button class="cat-card" data-prompt="What online courses or e-learning options are available?">
+          <div class="cat-icon accent"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M3 9l9-5 9 5-9 5-9-5z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M7 11v5c0 1.3 2.2 3 5 3s5-1.7 5-3v-5" stroke="currentColor" stroke-width="1.8"/></svg></div>
+          <h3 data-i18n="cat_learn_h">E-Learning</h3>
+          <p data-i18n="cat_learn_p">Grow your skills with practical courses built for Cameroon's hustlers.</p>
+          <span class="cat-link" data-i18n="cat_ask">Ask about this →</span>
+        </button>
+        <button class="cat-card" data-prompt="How does the affiliate program work and how can I earn from it?">
+          <div class="cat-icon brand"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M8 12a4 4 0 118 0 4 4 0 01-8 0z" stroke="currentColor" stroke-width="1.8"/><path d="M3 20c1-3 4-5 9-5s8 2 9 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></div>
+          <h3 data-i18n="cat_aff_h">Affiliate Program</h3>
+          <p data-i18n="cat_aff_p">Share what you love and earn commission every time someone buys.</p>
+          <span class="cat-link" data-i18n="cat_ask">Ask about this →</span>
+        </button>
+        <button class="cat-card" data-prompt="Tell me more about CSE Side Hustle and who it's for.">
+          <div class="cat-icon accent"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.8"/><path d="M12 8v.01M12 11v5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></div>
+          <h3 data-i18n="cat_about_h">About Us</h3>
+          <p data-i18n="cat_about_p">Our story, our mission, and why we built a hustle marketplace for Cameroon.</p>
+          <span class="cat-link" data-i18n="cat_ask">Ask about this →</span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <section class="how" id="how">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow" data-i18n="how_eyebrow">How it works</span>
+        <h2 data-i18n="how_h2">From a spoken question to a done deal</h2>
+      </div>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">01</div>
+          <div class="step-line"></div>
+          <h3 data-i18n="how1_h">Ask the Assistant</h3>
+          <p data-i18n="how1_p">Type or speak what you're looking for — a product, a provider, a course, anything.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">02</div>
+          <div class="step-line"></div>
+          <h3 data-i18n="how2_h">Get matched</h3>
+          <p data-i18n="how2_p">The assistant points you to the right category, listing, or provider in seconds.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">03</div>
+          <h3 data-i18n="how3_h">Book or buy</h3>
+          <p data-i18n="how3_p">Confirm the details and complete your booking or purchase — done.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="cta-banner">
+        <div>
+          <h2 data-i18n="cta_h2">Got a hustle question? Ask right now.</h2>
+          <p data-i18n="cta_p">No forms, no menus — just tell the assistant what you need.</p>
+        </div>
+        <a href="#assistant" class="btn btn-primary" data-i18n="cta_btn">Open the Assistant</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="#top" class="logo">
+          <svg width="30" height="30" viewBox="0 0 40 40" fill="none"><path d="M8 30V10L20 6L32 10V30" stroke="#fff" stroke-width="2.4" stroke-linejoin="round"/><path d="M8 15L32 15" stroke="#fff" stroke-width="2.4"/><path d="M6 6L14 12L10 8" stroke="#F3641C" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span class="logo-word"><span class="cse">CSE</span><span class="hustle">SIDE HUSTLE</span></span>
+        </a>
+        <p data-i18n="footer_tag">Cameroon's trusted marketplace for products, services, medical care, courses and affiliate income — all guided by an AI assistant.</p>
+      </div>
+      <div class="footer-col">
+        <h4 data-i18n="footer_marketplace">Marketplace</h4>
+        <a href="#categories" data-i18n="cat_shop_h">Shop</a>
+        <a href="#categories" data-i18n="cat_serv_h">Services</a>
+        <a href="#categories" data-i18n="cat_med_h">Medical Care</a>
+        <a href="#categories" data-i18n="cat_learn_h">E-Learning</a>
+      </div>
+      <div class="footer-col">
+        <h4 data-i18n="footer_company">Company</h4>
+        <a href="#how" data-i18n="cat_about_h">About Us</a>
+        <a href="#categories" data-i18n="cat_aff_h">Affiliate Program</a>
+        <a href="#assistant" data-i18n="footer_contact">Ask the Assistant</a>
+      </div>
+      <div class="footer-col">
+        <h4 data-i18n="footer_lang">Language</h4>
+        <a href="#" id="footerLangBtn">Français / English</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span data-i18n="footer_copy">© 2026 CSE Side Hustle. Made for Cameroon's hustlers.</span>
+      <span data-i18n="footer_note">Demo redesign — booking &amp; checkout shown here are illustrative.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  // ---------------- i18n ----------------
+  const translations = {
+    en: {
+      nav_services:"Services", nav_shop:"Shop", nav_cta:"Ask the Assistant",
+      hero_eyebrow:"Cameroon's digital marketplace",
+      hero_h1:'Buy, sell, book services &amp; <span class="accent">earn online</span> — just by talking',
+      hero_lede:"Products, professional services, medical care, online courses and affiliate income, all in one place. Tell the Hustle Assistant what you need and it'll point you to the right spot.",
+      hero_cta1:"Talk to the Assistant", hero_cta2:"Browse categories",
+      trust1:"Trusted platform", trust2:"Easy browsing", trust3:"Fast discovery",
+      assist_online:"Online — ask anything", voice_out:"Voice",
+      chat_placeholder:"Ask about products, bookings, courses…",
+      tb1:"Trusted platform", tb2:"Easy browsing", tb3:"Handpicked deals", tb4:"Fast discovery",
+      cat_eyebrow:"What you're searching for", cat_h2:"One marketplace, six ways to hustle",
+      cat_p:"Every category below is wired into the assistant — tap a card and it'll ask the AI for you.",
+      cat_ask:"Ask about this →",
+      cat_shop_h:"Shop", cat_shop_p:"Find top-quality products and deals from verified sellers across Cameroon.",
+      cat_med_h:"Medical Care", cat_med_p:"Book consultations and care from vetted health professionals near you.",
+      cat_serv_h:"Services", cat_serv_p:"Book salons, repairs and other professional services in a few taps.",
+      cat_learn_h:"E-Learning", cat_learn_p:"Grow your skills with practical courses built for Cameroon's hustlers.",
+      cat_aff_h:"Affiliate Program", cat_aff_p:"Share what you love and earn commission every time someone buys.",
+      cat_about_h:"About Us", cat_about_p:"Our story, our mission, and why we built a hustle marketplace for Cameroon.",
+      how_eyebrow:"How it works", how_h2:"From a spoken question to a done deal",
+      how1_h:"Ask the Assistant", how1_p:"Type or speak what you're looking for — a product, a provider, a course, anything.",
+      how2_h:"Get matched", how2_p:"The assistant points you to the right category, listing, or provider in seconds.",
+      how3_h:"Book or buy", how3_p:"Confirm the details and complete your booking or purchase — done.",
+      cta_h2:"Got a hustle question? Ask right now.", cta_p:"No forms, no menus — just tell the assistant what you need.", cta_btn:"Open the Assistant",
+      footer_tag:"Cameroon's trusted marketplace for products, services, medical care, courses and affiliate income — all guided by an AI assistant.",
+      footer_marketplace:"Marketplace", footer_company:"Company", footer_lang:"Language", footer_contact:"Ask the Assistant",
+      footer_copy:"© 2026 CSE Side Hustle. Made for Cameroon's hustlers.",
+      footer_note:"Demo redesign — booking & checkout shown here are illustrative.",
+      chip1:"What's on Shop?", chip2:"Book a service", chip3:"Medical care options", chip4:"Affiliate program",
+      greeting:"Hi! I'm the Hustle Assistant 👋 Ask me about products, bookings, medical care, courses, or the affiliate program.",
+      lang_switch_label:"Français"
+    },
+    fr: {
+      nav_services:"Services", nav_shop:"Boutique", nav_cta:"Parler à l'assistant",
+      hero_eyebrow:"La marketplace digitale du Cameroun",
+      hero_h1:'Achetez, vendez, réservez des services et <span class="accent">gagnez en ligne</span> — juste en parlant',
+      hero_lede:"Produits, services professionnels, soins médicaux, cours en ligne et revenus d'affiliation, tout au même endroit. Dites à l'assistant ce dont vous avez besoin.",
+      hero_cta1:"Parler à l'assistant", hero_cta2:"Voir les catégories",
+      trust1:"Plateforme fiable", trust2:"Navigation facile", trust3:"Découverte rapide",
+      assist_online:"En ligne — posez vos questions", voice_out:"Voix",
+      chat_placeholder:"Posez une question sur les produits, réservations, cours…",
+      tb1:"Plateforme fiable", tb2:"Navigation facile", tb3:"Offres triées", tb4:"Découverte rapide",
+      cat_eyebrow:"Ce que vous recherchez", cat_h2:"Une marketplace, six façons de gagner",
+      cat_p:"Chaque catégorie est reliée à l'assistant — appuyez sur une carte pour lui poser la question.",
+      cat_ask:"Demander →",
+      cat_shop_h:"Boutique", cat_shop_p:"Trouvez des produits de qualité auprès de vendeurs vérifiés au Cameroun.",
+      cat_med_h:"Soins médicaux", cat_med_p:"Réservez des consultations avec des professionnels de santé vérifiés.",
+      cat_serv_h:"Services", cat_serv_p:"Réservez salons, réparations et autres services professionnels en quelques clics.",
+      cat_learn_h:"E-Learning", cat_learn_p:"Développez vos compétences avec des cours pratiques pour hustlers.",
+      cat_aff_h:"Programme d'affiliation", cat_aff_p:"Partagez ce que vous aimez et gagnez une commission à chaque achat.",
+      cat_about_h:"À propos", cat_about_p:"Notre histoire, notre mission, et pourquoi nous avons créé cette marketplace.",
+      how_eyebrow:"Comment ça marche", how_h2:"D'une question parlée à une affaire conclue",
+      how1_h:"Parlez à l'assistant", how1_p:"Tapez ou dites ce que vous cherchez — un produit, un prestataire, un cours.",
+      how2_h:"Soyez orienté", how2_p:"L'assistant vous indique la bonne catégorie, annonce ou prestataire en quelques secondes.",
+      how3_h:"Réservez ou achetez", how3_p:"Confirmez les détails et finalisez votre réservation ou achat — terminé.",
+      cta_h2:"Une question ? Posez-la maintenant.", cta_p:"Pas de formulaire, pas de menu — dites simplement à l'assistant ce qu'il vous faut.", cta_btn:"Ouvrir l'assistant",
+      footer_tag:"La marketplace de confiance du Cameroun pour produits, services, soins médicaux, cours et revenus d'affiliation — guidée par une IA.",
+      footer_marketplace:"Marketplace", footer_company:"Entreprise", footer_lang:"Langue", footer_contact:"Parler à l'assistant",
+      footer_copy:"© 2026 CSE Side Hustle. Conçu pour les hustlers du Cameroun.",
+      footer_note:"Refonte de démonstration — réservation et paiement présentés à titre illustratif.",
+      chip1:"Quoi sur la boutique ?", chip2:"Réserver un service", chip3:"Soins médicaux", chip4:"Programme d'affiliation",
+      greeting:"Salut ! Je suis l'Assistant Hustle 👋 Posez-moi vos questions sur les produits, réservations, soins, cours ou l'affiliation.",
+      lang_switch_label:"English"
+    }
+  };
+  let lang = 'en';
+
+  function applyLang(){
+    const dict = translations[lang];
+    document.querySelectorAll('[data-i18n]').forEach(el=>{
+      const key = el.getAttribute('data-i18n');
+      if(dict[key] !== undefined) el.innerHTML = dict[key];
+    });
+    document.querySelectorAll('[data-i18n-placeholder]').forEach(el=>{
+      const key = el.getAttribute('data-i18n-placeholder');
+      if(dict[key] !== undefined) el.setAttribute('placeholder', dict[key]);
+    });
+    document.getElementById('langLabel').textContent = dict.lang_switch_label;
+    renderChips();
+  }
+
+  function toggleLang(){
+    lang = lang === 'en' ? 'fr' : 'en';
+    applyLang();
+  }
+  document.getElementById('langToggle').addEventListener('click', toggleLang);
+  document.getElementById('footerLangBtn').addEventListener('click', (e)=>{ e.preventDefault(); toggleLang(); });
+
+  // ---------------- Chat ----------------
+  const chatBody = document.getElementById('chatBody');
+  const chatInput = document.getElementById('chatInput');
+  const sendBtn = document.getElementById('sendBtn');
+  const micBtn = document.getElementById('micBtn');
+  const speakToggle = document.getElementById('speakToggle');
+  const chipsRow = document.getElementById('chipsRow');
+
+  let history = [];
+  let speakReplies = false;
+  let greeted = false;
+
+  const SYSTEM_PROMPT = `You are the "Hustle Assistant", a friendly, concise AI helper embedded on the CSE Side Hustle website — Cameroon's digital marketplace where people can buy or sell products, book professional services (like salons or repairs), book medical care, take online courses (e-learning), and join an affiliate program to earn commission.
+
+Rules:
+- Reply in whatever language the user writes in (English or French), matching the site's bilingual audience.
+- Keep replies short and warm: 2-4 sentences max, no long lists unless truly needed.
+- Answer questions about the platform's categories (Shop, Medical Care, Services, E-Learning, Affiliate Program, About Us) helpfully.
+- If someone wants to actually book or buy something, explain that you help them figure out exactly what they need, and they'll complete the booking or purchase on that category's page — encourage them to check the relevant section.
+- Never invent specific real prices, real provider names, or real availability you don't know — speak in general, helpful terms about how the category works.
+- Tone: encouraging, practical, "let's help you hustle" energy, never salesy or corporate.`;
+
+  function scrollToBottom(){
+    chatBody.scrollTop = chatBody.scrollHeight;
+  }
+
+  function addMessage(text, role){
+    const div = document.createElement('div');
+    div.className = 'msg ' + role;
+    div.textContent = text;
+    chatBody.appendChild(div);
+    scrollToBottom();
+    return div;
+  }
+
+  function showTyping(){
+    const div = document.createElement('div');
+    div.className = 'typing';
+    div.id = 'typingIndicator';
+    div.innerHTML = '<span></span><span></span><span></span>';
+    chatBody.appendChild(div);
+    scrollToBottom();
+  }
+  function hideTyping(){
+    const t = document.getElementById('typingIndicator');
+    if(t) t.remove();
+  }
+
+  function speak(text){
+    if(!speakReplies || !window.speechSynthesis) return;
+    try{
+      window.speechSynthesis.cancel();
+      const utter = new SpeechSynthesisUtterance(text);
+      utter.lang = lang === 'fr' ? 'fr-FR' : 'en-US';
+      utter.rate = 1.02;
+      window.speechSynthesis.speak(utter);
+    }catch(e){ console.error('speech synthesis error', e); }
+  }
+
+  async function sendToAI(userText){
+    history.push({ role:'user', content: userText });
+    showTyping();
+    sendBtn.disabled = true;
+    try{
+      const response = await fetch("https://api.anthropic.com/v1/messages", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          model: "claude-sonnet-4-6",
+          max_tokens: 300,
+          system: SYSTEM_PROMPT,
+          messages: history
+        })
+      });
+      if(!response.ok) throw new Error('Request failed: ' + response.status);
+      const data = await response.json();
+      const textBlock = (data.content || []).find(b => b.type === 'text');
+      const replyText = textBlock ? textBlock.text : (lang==='fr' ? "Désolé, je n'ai pas de réponse pour le moment." : "Sorry, I don't have a response right now.");
+      hideTyping();
+      addMessage(replyText, 'bot');
+      history.push({ role:'assistant', content: replyText });
+      speak(replyText);
+    }catch(err){
+      console.error('Assistant error:', err);
+      hideTyping();
+      addMessage(lang==='fr' ? "Petit souci de connexion. Réessayez dans un instant." : "Small connection hiccup — please try again in a moment.", 'error');
+    }finally{
+      sendBtn.disabled = false;
+    }
+  }
+
+  function handleSend(){
+    const text = chatInput.value.trim();
+    if(!text) return;
+    addMessage(text, 'user');
+    chatInput.value = '';
+    sendToAI(text);
+  }
+
+  sendBtn.addEventListener('click', handleSend);
+  chatInput.addEventListener('keydown', (e)=>{ if(e.key === 'Enter') handleSend(); });
+
+  function renderChips(){
+    const dict = translations[lang];
+    chipsRow.innerHTML = '';
+    [dict.chip1, dict.chip2, dict.chip3, dict.chip4].forEach(label=>{
+      const b = document.createElement('button');
+      b.className = 'chip';
+      b.textContent = label;
+      b.addEventListener('click', ()=>{
+        chatInput.value = label;
+        handleSend();
+      });
+      chipsRow.appendChild(b);
+    });
+  }
+
+  // Category cards feed straight into the assistant
+  document.querySelectorAll('#catGrid .cat-card').forEach(card=>{
+    card.addEventListener('click', ()=>{
+      const prompt = card.getAttribute('data-prompt');
+      document.getElementById('assistant').scrollIntoView({behavior:'smooth', block:'center'});
+      chatInput.value = prompt;
+      setTimeout(handleSend, 350);
+    });
+  });
+
+  // Speak-replies toggle
+  speakToggle.addEventListener('click', ()=>{
+    speakReplies = !speakReplies;
+    speakToggle.classList.toggle('active', speakReplies);
+    if(!speakReplies && window.speechSynthesis) window.speechSynthesis.cancel();
+  });
+
+  // ---------------- Voice input (Web Speech API) ----------------
+  const SpeechRecognitionCtor = window.SpeechRecognition || window.webkitSpeechRecognition;
+  let recognition = null;
+  let listening = false;
+
+  if(SpeechRecognitionCtor){
+    recognition = new SpeechRecognitionCtor();
+    recognition.continuous = false;
+    recognition.interimResults = false;
+
+    recognition.onstart = ()=>{ listening = true; micBtn.classList.add('listening'); };
+    recognition.onend = ()=>{ listening = false; micBtn.classList.remove('listening'); };
+    recognition.onerror = (e)=>{ console.error('speech recognition error', e); listening = false; micBtn.classList.remove('listening'); };
+    recognition.onresult = (e)=>{
+      const transcript = e.results[0][0].transcript;
+      chatInput.value = transcript;
+      handleSend();
+    };
+
+    micBtn.addEventListener('click', ()=>{
+      recognition.lang = lang === 'fr' ? 'fr-FR' : 'en-US';
+      if(listening){ recognition.stop(); }
+      else{
+        try{ recognition.start(); }catch(e){ console.error(e); }
+      }
+    });
+  }else{
+    micBtn.disabled = true;
+    micBtn.title = 'Voice input not supported in this browser — try Chrome';
+  }
+
+  // Init
+  applyLang();
+  setTimeout(()=>{
+    if(!greeted){
+      addMessage(translations[lang].greeting, 'bot');
+      greeted = true;
+    }
+  }, 400);
+})();
+</script>
+
+</body>
+</html>
