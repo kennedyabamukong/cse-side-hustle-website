@@ -1,0 +1,1081 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Explore professional digital, creative, business, construction, home and personal services from CSE Side Hustle in Cameroon.">
+  <meta name="keywords" content="CSE Side Hustle services, web design Cameroon, graphic design Cameroon, digital marketing, business services, construction services, home services">
+  <meta name="theme-color" content="#0b5ed7">
+
+  <title>Professional Services | CSE Side Hustle</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      color: #172033;
+      background: #f6f9ff;
+      line-height: 1.6;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    button,
+    input {
+      font: inherit;
+    }
+
+    /* HEADER */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(255,255,255,0.97);
+      border-bottom: 1px solid #e5eaf3;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+    }
+
+    .nav {
+      max-width: 1200px;
+      margin: auto;
+      min-height: 72px;
+      padding: 0 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .logo {
+      font-size: 23px;
+      font-weight: 800;
+      color: #0b5ed7;
+      white-space: nowrap;
+    }
+
+    .logo span {
+      color: #172033;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 25px;
+    }
+
+    .nav-links a {
+      font-weight: 600;
+      color: #344054;
+      transition: .2s;
+    }
+
+    .nav-links a:hover {
+      color: #0b5ed7;
+    }
+
+    .nav-cta {
+      padding: 10px 17px;
+      background: #0b5ed7;
+      color: white !important;
+      border-radius: 9px;
+    }
+
+    .menu {
+      display: none;
+      border: 0;
+      background: transparent;
+      font-size: 28px;
+      cursor: pointer;
+      color: #0b5ed7;
+    }
+
+    /* HERO */
+    .hero {
+      background:
+        linear-gradient(135deg, rgba(7,72,168,.98), rgba(11,94,215,.91)),
+        radial-gradient(circle at top right, #4da3ff, transparent 40%);
+      color: white;
+      padding: 90px 20px 85px;
+    }
+
+    .hero-inner {
+      max-width: 1150px;
+      margin: auto;
+      text-align: center;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 8px 15px;
+      border: 1px solid rgba(255,255,255,.35);
+      background: rgba(255,255,255,.1);
+      border-radius: 30px;
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+
+    .hero h1 {
+      max-width: 850px;
+      margin: auto;
+      font-size: clamp(38px, 6vw, 66px);
+      line-height: 1.08;
+      margin-bottom: 22px;
+    }
+
+    .hero p {
+      max-width: 760px;
+      margin: auto;
+      font-size: 18px;
+      opacity: .93;
+    }
+
+    .hero-buttons {
+      margin-top: 32px;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      padding: 12px 23px;
+      border-radius: 9px;
+      font-weight: 700;
+      border: 2px solid transparent;
+      transition: .2s;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background: white;
+      color: #0b5ed7;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn-outline {
+      color: white;
+      border-color: rgba(255,255,255,.7);
+    }
+
+    .btn-outline:hover {
+      background: white;
+      color: #0b5ed7;
+    }
+
+    /* SEARCH */
+    .search-area {
+      max-width: 950px;
+      margin: -30px auto 0;
+      padding: 0 20px;
+      position: relative;
+      z-index: 5;
+    }
+
+    .search-box {
+      background: white;
+      border-radius: 15px;
+      box-shadow: 0 12px 35px rgba(15,48,90,.12);
+      padding: 18px;
+      display: flex;
+      gap: 12px;
+    }
+
+    .search-box input {
+      width: 100%;
+      border: 1px solid #d9e1ee;
+      outline: none;
+      border-radius: 9px;
+      padding: 14px 16px;
+      font-size: 16px;
+    }
+
+    .search-box input:focus {
+      border-color: #0b5ed7;
+    }
+
+    /* SECTIONS */
+    section {
+      padding: 80px 20px;
+    }
+
+    .container {
+      max-width: 1150px;
+      margin: auto;
+    }
+
+    .section-heading {
+      text-align: center;
+      max-width: 750px;
+      margin: 0 auto 45px;
+    }
+
+    .section-heading .small-title {
+      color: #0b5ed7;
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+
+    .section-heading h2 {
+      font-size: clamp(30px, 4vw, 44px);
+      line-height: 1.15;
+      margin-bottom: 13px;
+    }
+
+    .section-heading p {
+      color: #64748b;
+      font-size: 16px;
+    }
+
+    /* CATEGORIES */
+    .categories {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+
+    .category {
+      background: white;
+      border: 1px solid #e5eaf3;
+      border-radius: 15px;
+      padding: 28px;
+      box-shadow: 0 7px 25px rgba(15,48,90,.05);
+      transition: .25s;
+    }
+
+    .category:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 35px rgba(15,48,90,.10);
+      border-color: #bdd4f7;
+    }
+
+    .category-icon {
+      width: 55px;
+      height: 55px;
+      border-radius: 13px;
+      background: #eaf3ff;
+      color: #0b5ed7;
+      display: grid;
+      place-items: center;
+      font-size: 27px;
+      margin-bottom: 18px;
+    }
+
+    .category h3 {
+      font-size: 21px;
+      margin-bottom: 16px;
+    }
+
+    .service-list {
+      list-style: none;
+    }
+
+    .service-list li {
+      padding: 8px 0;
+      border-bottom: 1px solid #edf1f7;
+      color: #526174;
+      font-size: 15px;
+    }
+
+    .service-list li:last-child {
+      border-bottom: 0;
+    }
+
+    .service-list li::before {
+      content: "✓";
+      color: #0b5ed7;
+      font-weight: 800;
+      margin-right: 9px;
+    }
+
+    /* FEATURED SERVICES */
+    .featured {
+      background: white;
+    }
+
+    .service-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .service-card {
+      border: 1px solid #e5eaf3;
+      border-radius: 14px;
+      padding: 25px;
+      background: #fff;
+      transition: .25s;
+    }
+
+    .service-card:hover {
+      transform: translateY(-4px);
+      border-color: #0b5ed7;
+      box-shadow: 0 12px 30px rgba(11,94,215,.10);
+    }
+
+    .service-card .icon {
+      font-size: 31px;
+      margin-bottom: 13px;
+    }
+
+    .service-card h3 {
+      font-size: 19px;
+      margin-bottom: 8px;
+    }
+
+    .service-card p {
+      color: #64748b;
+      font-size: 14px;
+      margin-bottom: 18px;
+    }
+
+    .service-link {
+      color: #0b5ed7;
+      font-weight: 800;
+      font-size: 14px;
+    }
+
+    /* PROCESS */
+    .process {
+      background: #f1f6ff;
+    }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+
+    .step {
+      text-align: center;
+      background: white;
+      border-radius: 14px;
+      padding: 30px 20px;
+      border: 1px solid #e3eaf5;
+    }
+
+    .step-number {
+      width: 52px;
+      height: 52px;
+      margin: 0 auto 16px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: #0b5ed7;
+      color: white;
+      font-weight: 800;
+      font-size: 19px;
+    }
+
+    .step h3 {
+      margin-bottom: 7px;
+    }
+
+    .step p {
+      color: #64748b;
+      font-size: 14px;
+    }
+
+    /* PROVIDER CTA */
+    .provider {
+      background: linear-gradient(135deg, #0b5ed7, #06459f);
+      color: white;
+    }
+
+    .provider-inner {
+      max-width: 900px;
+      text-align: center;
+      margin: auto;
+    }
+
+    .provider h2 {
+      font-size: clamp(30px, 4vw, 46px);
+      margin-bottom: 15px;
+    }
+
+    .provider p {
+      max-width: 700px;
+      margin: auto;
+      opacity: .92;
+    }
+
+    .provider .hero-buttons {
+      margin-top: 27px;
+    }
+
+    /* WHY CSE */
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .why-card {
+      padding: 25px;
+      border-radius: 14px;
+      background: #f6f9ff;
+      border: 1px solid #e5eaf3;
+    }
+
+    .why-card strong {
+      display: block;
+      margin-bottom: 7px;
+      font-size: 18px;
+    }
+
+    .why-card p {
+      color: #64748b;
+      font-size: 14px;
+    }
+
+    /* CTA */
+    .final-cta {
+      padding: 85px 20px;
+      text-align: center;
+      background: white;
+    }
+
+    .final-cta h2 {
+      font-size: clamp(30px, 4vw, 46px);
+      margin-bottom: 13px;
+    }
+
+    .final-cta p {
+      color: #64748b;
+      max-width: 650px;
+      margin: auto;
+    }
+
+    .final-cta .btn {
+      margin-top: 25px;
+      background: #0b5ed7;
+      color: white;
+    }
+
+    /* FOOTER */
+    footer {
+      background: #081a33;
+      color: #cbd5e1;
+      padding: 45px 20px 25px;
+    }
+
+    .footer-inner {
+      max-width: 1150px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 40px;
+    }
+
+    footer h3 {
+      color: white;
+      margin-bottom: 12px;
+    }
+
+    footer p {
+      font-size: 14px;
+      max-width: 430px;
+    }
+
+    footer ul {
+      list-style: none;
+    }
+
+    footer li {
+      margin: 8px 0;
+      font-size: 14px;
+    }
+
+    footer a:hover {
+      color: white;
+    }
+
+    .copyright {
+      max-width: 1150px;
+      margin: 35px auto 0;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255,255,255,.1);
+      text-align: center;
+      font-size: 13px;
+    }
+
+    /* MOBILE */
+    @media (max-width: 900px) {
+      .categories,
+      .service-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .steps {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .why-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .footer-inner {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 650px) {
+      .nav {
+        min-height: 65px;
+      }
+
+      .menu {
+        display: block;
+      }
+
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 65px;
+        left: 0;
+        right: 0;
+        background: white;
+        padding: 18px 20px;
+        flex-direction: column;
+        align-items: stretch;
+        box-shadow: 0 8px 20px rgba(0,0,0,.08);
+      }
+
+      .nav-links.active {
+        display: flex;
+      }
+
+      .nav-links a {
+        padding: 8px 0;
+      }
+
+      .nav-cta {
+        text-align: center;
+      }
+
+      .hero {
+        padding: 65px 18px 70px;
+      }
+
+      .hero h1 {
+        font-size: 39px;
+      }
+
+      .hero p {
+        font-size: 16px;
+      }
+
+      section {
+        padding: 60px 18px;
+      }
+
+      .search-area {
+        padding: 0 15px;
+      }
+
+      .search-box {
+        padding: 13px;
+      }
+
+      .categories,
+      .service-grid,
+      .steps,
+      .why-grid,
+      .footer-inner {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-buttons {
+        flex-direction: column;
+      }
+
+      .hero-buttons .btn {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <nav class="nav">
+      <a href="index.html" class="logo">
+        CSE <span>Side Hustle</span>
+      </a>
+
+      <button class="menu" onclick="toggleMenu()" aria-label="Open menu">
+        ☰
+      </button>
+
+      <div class="nav-links" id="navLinks">
+        <a href="index.html">Home</a>
+        <a href="#services">Services</a>
+        <a href="#how-it-works">How It Works</a>
+        <a href="#providers">For Providers</a>
+        <a href="#request" class="nav-cta">Get a Service</a>
+      </div>
+    </nav>
+  </header>
+
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-inner">
+      <span class="badge">CSE SIDE HUSTLE • PROFESSIONAL SERVICES</span>
+
+      <h1>Professional Services Designed to Help You Grow</h1>
+
+      <p>
+        Find reliable digital, creative, business, construction, home and
+        professional services through the CSE Side Hustle platform.
+      </p>
+
+      <div class="hero-buttons">
+        <a href="#services" class="btn btn-primary">Explore Services</a>
+        <a href="#providers" class="btn btn-outline">Become a Provider</a>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- SEARCH -->
+  <div class="search-area">
+    <div class="search-box">
+      <input
+        type="search"
+        id="serviceSearch"
+        placeholder="Search for a service... e.g. web design, graphic design"
+        onkeyup="searchServices()"
+      >
+    </div>
+  </div>
+
+
+  <!-- SERVICES -->
+  <section id="services">
+    <div class="container">
+
+      <div class="section-heading">
+        <div class="small-title">Our Services</div>
+        <h2>Everything You Need in One Place</h2>
+        <p>
+          Explore our growing range of services designed for individuals,
+          entrepreneurs, students, families and businesses.
+        </p>
+      </div>
+
+      <div class="categories" id="serviceCategories">
+
+        <div class="category service-item">
+          <div class="category-icon">💻</div>
+          <h3>Web & Technology</h3>
+
+          <ul class="service-list">
+            <li>Website Design & Development</li>
+            <li>E-commerce Solutions</li>
+            <li>Website Maintenance</li>
+            <li>Domain & Hosting Setup</li>
+            <li>Digital Solutions</li>
+          </ul>
+        </div>
+
+
+        <div class="category service-item">
+          <div class="category-icon">📱</div>
+          <h3>Digital Marketing</h3>
+
+          <ul class="service-list">
+            <li>Social Media Management</li>
+            <li>Facebook Advertising</li>
+            <li>Google Advertising</li>
+            <li>Digital Marketing</li>
+            <li>Content Creation</li>
+          </ul>
+        </div>
+
+
+        <div class="category service-item">
+          <div class="category-icon">🎨</div>
+          <h3>Creative & Design</h3>
+
+          <ul class="service-list">
+            <li>Graphic Design</li>
+            <li>Logo & Brand Identity</li>
+            <li>Flyers & Posters</li>
+            <li>Video Editing</li>
+            <li>Social Media Designs</li>
+          </ul>
+        </div>
+
+
+        <div class="category service-item">
+          <div class="category-icon">🏗️</div>
+          <h3>Construction & Property</h3>
+
+          <ul class="service-list">
+            <li>House Plans & 3D Design</li>
+            <li>Building Design</li>
+            <li>Construction Consultation</li>
+            <li>Property Services</li>
+            <li>Home Repair & Maintenance</li>
+          </ul>
+        </div>
+
+
+        <div class="category service-item">
+          <div class="category-icon">📄</div>
+          <h3>Business & Administrative</h3>
+
+          <ul class="service-list">
+            <li>Document Typing</li>
+            <li>Data Entry</li>
+            <li>CV & Resume Design</li>
+            <li>Business Support</li>
+            <li>Digital Documentation</li>
+          </ul>
+        </div>
+
+
+        <div class="category service-item">
+          <div class="category-icon">🏠</div>
+          <h3>Home & Personal Services</h3>
+
+          <ul class="service-list">
+            <li>Cleaning Services</li>
+            <li>Childcare & Babysitting</li>
+            <li>Barbing Services</li>
+            <li>Satellite Dish Installation</li>
+            <li>Home Assistance</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- FEATURED SERVICES -->
+  <section class="featured">
+    <div class="container">
+
+      <div class="section-heading">
+        <div class="small-title">Popular Services</div>
+        <h2>What Can We Help You With?</h2>
+        <p>
+          Start with some of the services customers frequently look for.
+        </p>
+      </div>
+
+      <div class="service-grid">
+
+        <div class="service-card">
+          <div class="icon">🌐</div>
+          <h3>Website Design</h3>
+          <p>
+            Build a professional online presence for your business,
+            organization, personal brand or project.
+          </p>
+          <a href="#request" class="service-link">Request Service →</a>
+        </div>
+
+        <div class="service-card">
+          <div class="icon">🎨</div>
+          <h3>Graphic Design</h3>
+          <p>
+            Get professional flyers, logos, banners, social media graphics
+            and other creative designs.
+          </p>
+          <a href="#request" class="service-link">Request Service →</a>
+        </div>
+
+        <div class="service-card">
+          <div class="icon">📣</div>
+          <h3>Digital Marketing</h3>
+          <p>
+            Promote your business and reach more customers through digital
+            marketing and advertising.
+          </p>
+          <a href="#request" class="service-link">Request Service →</a>
+        </div>
+
+        <div class="service-card">
+          <div class="icon">🎬</div>
+          <h3>Video Editing</h3>
+          <p>
+            Turn your raw footage into engaging videos for businesses,
+            social media, events and campaigns.
+          </p>
+          <a href="#request" class="service-link">Request Service →</a>
+        </div>
+
+        <div class="service-card">
+          <div class="icon">🏡</div>
+          <h3>House Plans & 3D Design</h3>
+          <p>
+            Get professional house planning, building design and 3D
+            visualization services.
+          </p>
+          <a href="#request" class="service-link">Request Service →</a>
+        </div>
+
+        <div class="service-card">
+          <div class="icon">📝</div>
+          <h3>Document & Data Services</h3>
+          <p>
+            Professional document typing, formatting, data entry and
+            administrative support.
+          </p>
+          <a href="#request" class="service-link">Request Service →</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- HOW IT WORKS -->
+  <section class="process" id="how-it-works">
+    <div class="container">
+
+      <div class="section-heading">
+        <div class="small-title">Simple Process</div>
+        <h2>How CSE Services Work</h2>
+        <p>
+          Getting the help you need can be simple and convenient.
+        </p>
+      </div>
+
+      <div class="steps">
+
+        <div class="step">
+          <div class="step-number">1</div>
+          <h3>Choose</h3>
+          <p>Select the service you need from our available categories.</p>
+        </div>
+
+        <div class="step">
+          <div class="step-number">2</div>
+          <h3>Request</h3>
+          <p>Tell us what you need and provide the necessary details.</p>
+        </div>
+
+        <div class="step">
+          <div class="step-number">3</div>
+          <h3>Connect</h3>
+          <p>We help connect you with an appropriate service provider.</p>
+        </div>
+
+        <div class="step">
+          <div class="step-number">4</div>
+          <h3>Get Served</h3>
+          <p>Work with the provider to complete your requested service.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- WHY CSE -->
+  <section>
+    <div class="container">
+
+      <div class="section-heading">
+        <div class="small-title">Why CSE Side Hustle?</div>
+        <h2>A Platform Built Around Opportunity</h2>
+      </div>
+
+      <div class="why-grid">
+
+        <div class="why-card">
+          <strong>🌍 One Platform</strong>
+          <p>
+            Access different categories of services without searching
+            across multiple platforms.
+          </p>
+        </div>
+
+        <div class="why-card">
+          <strong>🤝 Local Opportunities</strong>
+          <p>
+            Connect customers with service providers and professionals
+            within the growing CSE ecosystem.
+          </p>
+        </div>
+
+        <div class="why-card">
+          <strong>🚀 Business Growth</strong>
+          <p>
+            Help businesses and individuals find solutions that can
+            improve their work and opportunities.
+          </p>
+        </div>
+
+        <div class="why-card">
+          <strong>📱 Convenient</strong>
+          <p>
+            Discover services online and start your request from your
+            phone, tablet or computer.
+          </p>
+        </div>
+
+        <div class="why-card">
+          <strong>💼 Provider Opportunities</strong>
+          <p>
+            Service providers can showcase their skills and reach
+            potential customers.
+          </p>
+        </div>
+
+        <div class="why-card">
+          <strong>🔵 Growing Ecosystem</strong>
+          <p>
+            CSE Side Hustle is building a digital ecosystem for learning,
+            services, opportunities and entrepreneurship.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- PROVIDERS -->
+  <section class="provider" id="providers">
+    <div class="provider-inner">
+
+      <h2>Do You Offer a Service?</h2>
+
+      <p>
+        Turn your skills into opportunities. Join the CSE Side Hustle
+        ecosystem and showcase your services to people looking for
+        professionals and service providers.
+      </p>
+
+      <div class="hero-buttons">
+        <a href="#request" class="btn btn-primary">List Your Service</a>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- REQUEST -->
+  <section class="final-cta" id="request">
+    <div class="container">
+
+      <h2>Need a Service?</h2>
+
+      <p>
+        Tell us what you need and let CSE Side Hustle help you find the
+        right service solution.
+      </p>
+
+      <!-- Replace this link with your real service-request form later -->
+      <a
+        href="https://www.csesidehustle.com/"
+        class="btn"
+        target="_blank"
+      >
+        Request a Service
+      </a>
+
+    </div>
+  </section>
+
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+
+      <div>
+        <h3>CSE Side Hustle</h3>
+        <p>
+          A growing digital platform connecting people to education,
+          healthcare, professional services, opportunities and
+          marketplaces across Cameroon.
+        </p>
+      </div>
+
+      <div>
+        <h3>Explore</h3>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#how-it-works">How It Works</a></li>
+          <li><a href="#providers">Become a Provider</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h3>Contact</h3>
+        <ul>
+          <li><a href="mailto:csesidehustle@gmail.com">Email Us</a></li>
+          <li><a href="https://www.csesidehustle.com/" target="_blank">CSE Website</a></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="copyright">
+      © <span id="year"></span> CSE Side Hustle. All rights reserved.
+    </div>
+  </footer>
+
+
+  <script>
+    function toggleMenu() {
+      document.getElementById("navLinks").classList.toggle("active");
+    }
+
+    function searchServices() {
+      const search = document
+        .getElementById("serviceSearch")
+        .value
+        .toLowerCase()
+        .trim();
+
+      const categories = document.querySelectorAll(".service-item");
+
+      categories.forEach(category => {
+        const text = category.innerText.toLowerCase();
+
+        if (text.includes(search)) {
+          category.style.display = "";
+        } else {
+          category.style.display = "none";
+        }
+      });
+    }
+
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+
+</body>
+</html>
+```
